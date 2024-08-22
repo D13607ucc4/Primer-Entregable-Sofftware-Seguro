@@ -110,7 +110,7 @@ Aqui, simplemente escogeremos la opción 1 "Guiado - utilizar todo el disco", ya
 
 ![Selccionar Disco](./Configuración%20Kali%20Linux/Kali_Disco.png)
 
-Aqui escogeremos el disco que querramos utilizar para guardar la información. En mi caso, al solo tener un disco, solo tengo una opción, pero depende de cada maquina y donde el usuario quiera guardar la información.</br>
+Aqui escogeremos el disco que querramos utilizar para guardar la información. En nuestro caso, al solo tener un disco, solo tenemos una opción, pero depende de cada maquina y donde el usuario quiera guardar la información.</br>
 **NOTA:** Lo que dice acerca de que se borrara la información, solo sucede en caso de que el sistema se este instalando como sistema principal, pero en nuestro caso que estamos instalando como una maquina virtual, no se borrará la información.
 
 ![Selccionar Disco](./Configuración%20Kali%20Linux/Kali_Disco2.png)
