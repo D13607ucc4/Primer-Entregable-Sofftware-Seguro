@@ -8,30 +8,30 @@ Este write-up tiene como objetivo documentar el proceso de creación y configura
 A lo largo de este documento, detallaremos cada paso necesario para establecer este entorno, que será utilizado en futuras actividades y prácticas relacionadas con la seguridad informática. Desde la instalación de una máquina virtual con Kali Linux hasta la configuración de un proxy de interceptación y la ejecución de un contenedor Docker con OWASP Juice Shop, este write-up proporcionará una guía completa que podrá ser replicada por cualquier usuario interesado en el tema.
 
 ### Este es el paso a paso a seguir para crear nuestra maquina virtual con Kali Linux:
-1. [Descargar Virtual Box](#section)
-2. [Configurar Virtual Box]
+1. [Descargar Virtual Box](#descargar-virtual-box)
+2. [Configurar Virtual Box](#configurar-virtual-box)
 3. [Descargar Kali Linux](https://www.kali.org/downloads/)
-4. [Configurar/Instalar Kali Linux en VirtualBox]
-5. [Configurar Proxy de interceptación en Kali Linux]
-6. [Descargar Docker en Kali Linux]
-7. [Configurar Docker en Kali Linux]
-8. [Descargar OWASP Juice Shop en Kali Linux]
-9. [Configurar OWASP Juice Shop en Kali Linux]
-10. [Configurar Proxy de interceptación en OWASP Juice Shop]
+4. [Configurar/Instalar Kali Linux en VirtualBox](#configurando-kali-linux)
+5. [Configurar Proxy de interceptación en Kali Linux](#configurar-proxy-de-interceptación-en-kali-linux)
+6. [Descargar Docker en Kali Linux]()
+7. [Descargar OWASP Juice Shop en Kali Linux](#descargar-owasp-juice-shop-en-kali-linux)
+8. [Configurar OWASP Juice Shop en Kali Linux](#configurar-owasp-juice-shop-en-kali-linux)
+9. [Configurar Proxy de interceptación en OWASP Juice Shop](#configurar-proxy-de-interceptación-en-owasp-juice-shop)
 
-(#section): ## Descargar Virtual Box
+## Descargar Virtual Box
 
 Para descargar Virtual Box, debemos de ir a la siguiente [pagina](https://www.virtualbox.org/wiki/Downloads), en la cual debemos de elegir el sistema opertaivo en el cual vamos a descargar el programa.
 
 ![VirtualBox](./Descargas/VirtualBox-Descarga.png)
 
+## Configurar Virtual Box
 
 Una vez descargado, si ejecutamos la aplicacion de Virtual Box, puede ser que nos aparezca en mensaje de error (como el de la imgen), en ese caso deberiamos de ir a la pagina de [Microsoft](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170). En esta pagina, debemos de scrollear un poco para encontrar una tabla como la de la siguiente imagen y seleccionaremos la versión de Visual C++ que necesitamos para nuestro sistema operativo.
 
 ![Error](Posible-Error.png)
 ___
 
-(#section): ## Descargar Kali Linux
+## Descargar Kali Linux
 
 Para descargar Kali Linux, debemos de ir a la siguiente [pagina](https://www.kali.org/downloads/), en la cual debemos elegir el tipo de instalación que queremos realizar.
 Podemos elegir la opción de "Virtual Machines" o "Installer Images". En la opción de "Virtual Machines", te descarga una carpeta con dos archivos, aunque el que nos interesa es el que tiene terminación ".vdi". 
@@ -162,7 +162,8 @@ Finalmente, le daremos a la opción "Si" para que se instale el sistema operativ
 ___
 [Descargar Docker](/Docker/Docker.md)
 ___
-## Instalando ZAP
+
+## Configurar Proxy de interceptación en Kali Linux (ZAP):
 
 Esta es una herramienta que ya puede venir instalada en nuestra maquina virtual, pero si queremos instalarla, debemos de descargarla desde el siguiente link: 
 [https://www.zaproxy.org/download/](https://www.zaproxy.org/download/)</br>
@@ -192,7 +193,11 @@ Esto nos instalara el software en nuestra maquina virtual.
 ___
 
 
+## Descargar OWASP Juice Shop en Kali Linux
 
+## Configurar OWASP Juice Shop en Kali Linux
+
+## Configurar Proxy de interceptación en OWASP Juice Shop
 
 
 
