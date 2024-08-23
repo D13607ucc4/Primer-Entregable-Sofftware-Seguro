@@ -9,14 +9,12 @@ A lo largo de este documento, detallaremos cada paso necesario para establecer e
 
 ### Este es el paso a paso a seguir para crear nuestra maquina virtual con Kali Linux:
 1. [Descargar Virtual Box](#descargar-virtual-box)
-2. [Configurar Virtual Box](#configurar-virtual-box)
-3. [Descargar Kali Linux](https://www.kali.org/downloads/)
-4. [Configurar/Instalar Kali Linux en VirtualBox](#configurando-kali-linux)
-5. [Configurar Proxy de interceptación en Kali Linux](#configurar-proxy-de-interceptación-en-kali-linux)
-6. [Descargar Docker en Kali Linux]()
-7. [Descargar OWASP Juice Shop en Kali Linux](#descargar-owasp-juice-shop-en-kali-linux)
-8. [Configurar OWASP Juice Shop en Kali Linux](#configurar-owasp-juice-shop-en-kali-linux)
-9. [Configurar Proxy de interceptación en OWASP Juice Shop](#configurar-proxy-de-interceptación-en-owasp-juice-shop)
+2. [Descargar Kali Linux](#descargar-kali-linux)
+3. [Configurar Virtual Box](#configurar-virtualbox)
+4. [Configurar/Instalar Kali Linux en VirtualBox](#configurar-kali-linux)
+5. [Descargar Docker en Kali Linux](#descargar-docker-en-kali-linux)
+6. [Descargar OWASP Juice Shop en Docker](#descargar-owasp-juice-shop-en-docker)
+7. [Configuración del Proxy en ZAP y Firefox](#configuración-del-proxy-en-zap-y-firefox)
 
 ## Descargar Virtual Box
 
@@ -24,9 +22,9 @@ Para descargar Virtual Box, debemos de ir a la siguiente [pagina](https://www.vi
 
 ![VirtualBox](./Descargas/VirtualBox-Descarga.png)
 
-## Configurar Virtual Box
 
-Una vez descargado, si ejecutamos la aplicacion de Virtual Box, puede ser que nos aparezca en mensaje de error (como el de la imgen), en ese caso deberiamos de ir a la pagina de [Microsoft](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170). En esta pagina, debemos de scrollear un poco para encontrar una tabla como la de la siguiente imagen y seleccionaremos la versión de Visual C++ que necesitamos para nuestro sistema operativo.
+
+Una vez descargado, si ejecutamos la aplicacion de Virtual Box, puede ser que nos aparezca en mensaje de error (como el de la imgen), en ese caso deberiamos de ir a la pagina de [Microsoft Visual C++](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170). En esta pagina, debemos de scrollear un poco para encontrar una tabla como la de la siguiente imagen y seleccionaremos la versión de Visual C++ que necesitamos para nuestro sistema operativo.
 
 ![Error](Posible-Error.png)
 ___
@@ -45,7 +43,7 @@ Una vez clickeado en el boton "Download", deberia de aparecer una pagina similar
 
 ___
 
-## Comencemos a configurar nuestra maquina virtual
+## Configurar virtualBox
 
 Apenas iniciemos nuestra aplicacion de virtual box, y deberia de aparecer una ventana similar a la siguiente foto. 
 
@@ -78,7 +76,7 @@ Una vez tengamos todo listo, le daremos al boton de "Siguiente" para seguir conf
 Esta es la ultima ventana que tendremos antes de tener nuestra maquina lista y sirve para ver los valores que hemos configurado. Si todo ha ido bien, le daremos al boton de "Terminar" para crear nuestra maquina virtual.
 ___
 
-## Configurando Kali Linux
+## Configurar Kali Linux
 
 Una vez creada nuestra maquina virtual, debemos de entrar a ella para poder configurar su sistema. Para ello, debemos de hacer click en el boton "Iniciar" de la maquina virtual que hemos creado. Una vez dentro de nuestra maquina virtual, deberia de aparecer una ventana similar a la siguiente foto.</br>
 NOTA: En esta sección solo podremos navegar entre las diferentes opciones con las flecha de nuestro teclado y para seleccionar una opción, debemos de presionar "Enter".</br>
@@ -88,7 +86,6 @@ NOTA: En esta sección solo podremos navegar entre las diferentes opciones con l
 Una vez dentro de nuestra maquina virtual, tendremos para elegir entre distintas opciones para configurar nuestro sistema operativo.</br>
 Por defecto, vendra marcada la primera opción, pero nosotros queremos seleccionar "Start Installer".
 
-<!-- Reemplazar esta imagen por una que no tenga lo de "Autocapturar teclado"-->
 ![Selccionar opciones](./Configuración%20Kali%20Linux/Kali_Selector.png)
 
 Aqui, escogemos el idioma que queremos que nuestro sistema use, en este caso, elegimos Español.
@@ -160,7 +157,72 @@ Finalmente, le daremos a la opción "Si" para que se instale el sistema operativ
 
 ![Terminado](./Configuración%20Kali%20Linux/Kali_Terminado.png)
 ___
-[Descargar Docker](/Docker/Docker.md)
+
+## Descargar Docker en Kali Linux
+
+Una vez dentro de nuestra maquina virtual, tendremos que abrir la terminal. Estando dentro de la terminal, escribiremos:
+```
+sudo apt update
+sudo apt install docker.io
+```
+Esto nos instalara el docker en nuestra maquina virtual.
+
+![Instalar Docker](/Docker/Instalar-Docker.png)
+
+Si intentamos ejecutar el comando "docker ps" en nuestra terminal para ver los contenedores que tenemos y esta nos muestra un mensaje de error, debemos de ejecutar los siguientes comandos de la forma que se muestra en la siguiente imagen:
+```
+sudo usermod -aG docker ${USER}
+su - ${USER}
+sudo usermod -aG docker "nombre de usuario"
+```
+Esto nos dara permisos para que nuestro usuario pueda ejecutar el comando "docker" en nuestra terminal.
+
+![Super usuario Docker](/Docker/Super-usuario-Docker.png)
+
+## Descargar OWASP Juice Shop en Docker
+
+Después de tener permisos para ejecutar el comando "docker", debemos de descargar la imagen de docker que queremos que nuestro contenedor use. Para ello, debemos ejecutar el siguiente comando:
+```
+docker pull bkimminich/juice-shop //Esto nos descargara la imagen de docker.
+
+NOTA: Esta linea se puede ejecutar con cualquier usuario, no solo con el superusuario como muestra la foto de abajo.
+```
+Una vez ejecutada ese comando, podes ejecutar:
+```
+docker image ls //Esto nos mostrara las imagenes que tenemos en nuestra maquina virtual.
+```
+
+![Super Usuario Docker](/Docker/Descarga-Imagen-Contenedor-Docker.png)
+
+Una vez tengamos la imagen descargada, es hora de cresr el contenedor en base a la imagen anteriormente descargada. Para ello, debemos ejecutar una de las siguientes lineas de comandos:
+```
+docker run -d -p 8000:3000 --name juice-shop bkimminich/juice-shop 
+
+docker run -d -p 8000:3000 bkimminich/juice-shop //Esto nos creara el contenedor en nuestra maquina virtual.
+
+NOTA: La diferencia entre ellas es "--name", que nos permite darle un nombre al contenedor.
+```
+Esto nos creara y arrancara el contenedor en nuestra maquina virtual.
+```
+docker start juice-shop //Esto arrancara el contenedor en nuestra maquina virtual.
+```
+Finalmente, para ver el sitio web que tenemos en nuestra maquina virtual, debemos de acceder a la siguiente direccion:
+[http://localhost:8000/](http://localhost:8000/)</br>
+
+![Creacion Contenedor Docker](/Docker/Creacion-Contenedor-Docker.png)
+
+### Comenzar o Detener el funcionamiento de un contenedor
+
+Después de tener creado el contenedor, podemos arrancarlo utilizando el sisguiente comando:
+```
+docker start {NAME or CONTAINER ID} //CONTAINER ID, se encuentra en la tabla y es otra forma de iniciar o finalizar el contenedor en caso de no habrle puesto un nombre. 
+```
+
+Para finalizar el contenedor, debemos de ejecutar el siguiente comando:
+```
+docker stop {NAME or CONTAINER ID} 
+```
+![Detener Contenedor](/Docker/Detener-Contenedor-Docker.png)
 ___
 
 ## Configurar Proxy de interceptación en Kali Linux (ZAP):
@@ -191,13 +253,49 @@ Esto nos instalara el software en nuestra maquina virtual.
 ![Instalacion ZAP](./ZAP/Instalacion-ZAP.png)
 
 ___
+## Configuración del Proxy en ZAP y Firefox
 
+Una vez abierta la apliación ZAP, nos dirigiremos al apartado "tools" y seleccionaremos "Options" (ultima opción).
 
-## Descargar OWASP Juice Shop en Kali Linux
+![Instalacion ZAP](./ZAP/Certificado-ZAP.png)
 
-## Configurar OWASP Juice Shop en Kali Linux
+Dentro de "Options", debemos buscar la opcion "Network" y clickearla para que nos aparezca otras seis opciones de las que debemos seleccionar "Server Certificates"
+Una vez seleccionada, debemos de hacer click en "Save" para guardar el certificado en nuestro sistema.
 
-## Configurar Proxy de interceptación en OWASP Juice Shop
+![Instalacion ZAP](./ZAP/Certificado-ZAP2.png)
+
+Nos dirigimos a nuestro navegador, en este caso, Firefox y clickeamos en las tres rayitas que se encuentran en la parte superior derecha de la pantalla. Ahi encontraremos una opcion "Settings" y clickeamos en ella.
+Dentro de las configuraciones, escribiremos en el buscardor "Certificates" y clickeamos en "View Certificates".
+
+![Instalacion ZAP](./ZAP/Certificado-Firefox.png)
+
+Aqui, haciendo click en "Import", debemos de seleccionar el certificado que hemos guardado en nuestro sistema.
+
+![Instalacion ZAP](./ZAP/Certificado-Firefox2.png)
+
+Dejaremos seleccionados todos los campos y le daremos "OK" para guardar el certificado y "OK" para cerrar la ventana de "Certificate Manager".
+
+![Instalacion ZAP](./ZAP/Certificado-Firefox3.png)
+
+Una vez guardado el certificado, debemos de volver a nuestra ventana de "Settings" y buscar "Proxy" y luego en "Settings".
+
+![Instalacion ZAP](./ZAP/Proxy-Firefox.png)
+
+En esta instancia, configuraremos el Proxy de nuestro navegador. Para ello, debemos de hacer click en "Manual Proxy Configuration" y en el campo que aparece debemos de escribir "localhost", "127.0.0.1", en el puerto 8000, este aparece en la URL cuando pusimos "localhost : puerto" (sin los espacios).</br>
+**NOTA:** Si aparece un mensaje como el del final de la pestaña de la foto, "connections to localhost, 127.0.0.1/8 ::1 are never proxied", es porque no tenemos permisos para hacer esto, por lo que debemos de utilizar la IP de nuestra maquina.:
+
+![Instalacion ZAP](./ZAP/Proxy-Firefox2.png)
+
+Después de tener configurado el Proxy en el navegador, debemos volver a la ventana de la aplicación de ZAP y buscar "Options" y luego en "Options", debemos buscar y clickear en la opcion "Network" y en "Local Server/Proxies".</br>
+Aqui, comprobaremos que los campos de "Address" y "Port" están configurados correctamente, en este caso, debemos de poner "localhost" y "8080".
+Debemos de guardar los cambios en la aplicación de ZAP, para ello, debemos de hacer click en "OK".
+
+![Instalacion ZAP](./ZAP/Proxy-ZAP.png)
+
+Para finalizar, vamos al navegador a recargar o "F5" en nuestra pagina (localhost:8000 o IP:8000) y si entramos a la aplicación de ZAP, debemos poder ver el trafico junto a las peticiones GET que ha realizado el navegador al refrescar la pagina.
+
+![Instalacion ZAP](./ZAP/ZAP-Evidencia2.png)
+
 
 
 
