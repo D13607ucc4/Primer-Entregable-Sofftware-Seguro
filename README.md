@@ -26,7 +26,7 @@ Para descargar Virtual Box, debemos de ir a la siguiente [pagina](https://www.vi
 
 Una vez descargado, si ejecutamos la aplicacion de Virtual Box, puede ser que nos aparezca en mensaje de error (como el de la imgen), en ese caso deberiamos de ir a la pagina de [Microsoft Visual C++](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170). En esta pagina, debemos de scrollear un poco para encontrar una tabla como la de la siguiente imagen y seleccionaremos la versión de Visual C++ que necesitamos para nuestro sistema operativo.
 
-![Error](Posible-Error.png)
+![Error](./Descargas/Posible-Error.png)
 ___
 
 ## Descargar Kali Linux
@@ -47,7 +47,7 @@ ___
 
 Apenas iniciemos nuestra aplicacion de virtual box, y deberia de aparecer una ventana similar a la siguiente foto. 
 
-![VirtualBox](VirtualBox-Inicio.png)
+![VirtualBox](./Configuración%20Maquina%20Virtual/VirtualBox-Inicio.png)
 
 En esta instancia, apretariamos el boton "Nueva" para crear una nueva maquina virtual y se nos desplegaria una ventana similar a la siguiente foto.
 
@@ -81,7 +81,7 @@ ___
 Una vez creada nuestra maquina virtual, debemos de entrar a ella para poder configurar su sistema. Para ello, debemos de hacer click en el boton "Iniciar" de la maquina virtual que hemos creado. Una vez dentro de nuestra maquina virtual, deberia de aparecer una ventana similar a la siguiente foto.</br>
 NOTA: En esta sección solo podremos navegar entre las diferentes opciones con las flecha de nuestro teclado y para seleccionar una opción, debemos de presionar "Enter".</br>
 
-![Iniciar maquina](VirtualBox-Inicio-Con-Maquina.png)
+![Iniciar maquina](./Configuración%20Maquina%20Virtual/VirtualBox-Inicio-Con-Maquina.png)
 
 Una vez dentro de nuestra maquina virtual, tendremos para elegir entre distintas opciones para configurar nuestro sistema operativo.</br>
 Por defecto, vendra marcada la primera opción, pero nosotros queremos seleccionar "Start Installer".
